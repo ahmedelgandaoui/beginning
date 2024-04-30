@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="facture.js"></script>
+<title>Calculator Form</title>
+<style>
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  input[type="text"], select {
+    width: 200px;
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+
+<form id="calculatorForm">
+  <div style="display: flex;">
+    <label for="tva">TVA:</label>
+    <input type="radio" id="tva9" name="tva" value="9%">
+    <label for="tva9">9%</label>
+    <input type="radio" id="tva11" name="tva" value="11%">
+    <label for="tva11">11%</label>
+    <input type="radio" id="tva19" name="tva" value="19%">
+    <label for="tva19">19%</label>
+  </div>
+  <div>
+    <label for="produit">Produit:</label>
+    <select id="produit" name="produit">
+      <option value="produit01">Produit 01</option>
+      <option value="produit02">Produit 02</option>
+      <option value="produit03">Produit 03</option>
+    </select>
+  </div>
+  <div>
+    <label for="quantite">Quantité:</label>
+    <input type="number" min="0" id="quantite" name="quantite">
+  </div>
+  <div>
+    <label for="prixHT">Prix HT:</label>
+    <input type="number" min="0" id="prixHT" name="prixHT">
+  </div>
+  <div>
+    <label for="montant">Montant:</label>
+    <input type="number" min="0" id="montant" name="montant">
+  </div>
+  <div>
+    <label for="totalTTC">Total TTC:</label>
+    <input type="number" min="0" id="totalTTC" name="totalTTC">
+  </div>
+  <div>
+    <button type="button" onclick="effacer()">Effacer</button>
+    <button type="button" onclick="calculer()">Calculer</button>
+  </div>
+</form>
+
+<script>
+  function effacer() {
+    document.getElementById("calculatorForm").reset();
+  }
+
+  function calculer() {
+    // Your calculation logic here
+    alert("Calculation will be done here.");
+  }
+</script>
+
+</body>
+</html>
