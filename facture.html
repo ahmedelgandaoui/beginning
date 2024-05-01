@@ -32,6 +32,7 @@
   <div>
     <label for="produit">Produit:</label>
     <select id="produit" name="produit">
+      <option selected >selecter un produit</option>
       <option value="produit01">Produit 01</option>
       <option value="produit02">Produit 02</option>
       <option value="produit03">Produit 03</option>
@@ -55,20 +56,9 @@
   </div>
   <div>
     <button type="button" onclick="effacer()">Effacer</button>
-    <button type="button" onclick="calculer()">Calculer</button>
+    <button type="submit" id="cal">Calculer</button>
   </div>
 </form>
-
-<script>
-  function effacer() {
-    document.getElementById("calculatorForm").reset();
-  }
-
-  function calculer() {
-    // Your calculation logic here
-    alert("Calculation will be done here.");
-  }
-</script>
 
 </body>
 </html>

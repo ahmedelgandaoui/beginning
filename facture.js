@@ -9,9 +9,21 @@ $(document).ready(function() {
     $('#produit').change(function() {
         // Log the selected option
         var selectedproduct = $(this).val();
-        alert("Selected option: " + selectedOption);
+    
         //then get the product object from produits array by name
+        var produit = produits.find(function(produit) {
+            return produit.name === selectedproduct;
+        });
+
         //then assign the produit.prix to prix produi
-        //then select tva radio button that has the same produic.tva
+        $('#prixHT').val(produit.prix);
+
+        //then assign the produit.tva to tva produit
+        console.log("===> ",     $("input[name='tva']").filter("[value='" + produit.tva + "']"))
+        $("input[name='tva']").filter("[value='" + produit.tva + "%']").prop("checked", true);
     });
+    $("form").on( "submit", function (event) {
+        event.preventDefault(); 
+        console .log("===> ",   $("input[name='tva']:checked").val());
+    } );
 });
