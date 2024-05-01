@@ -26,4 +26,21 @@ $(document).ready(function() {
         event.preventDefault(); 
         console .log("===> ",   $("input[name='tva']:checked").val());
     } );
+
+    var prixHT = parseFloat($('#prixHT').val());
+        var tvaPercentage = parseFloat($("input[name='tva']:checked").val());
+        var quantite = parseInt($('#quantite').val());
+
+        // Calculate total amount without tax (HT)
+        var montantHT = prixHT * quantite;
+
+        // Calculate total amount of tax
+        var montantTVA = (montantHT * tvaPercentage) / 100;
+
+        // Calculate total amount including tax (TTC)
+        var totalTTC = montantHT + montantTVA;
+
+        // Update the montant and totalTTC fields
+        $('#montant').val(montantHT.toFixed(2));
+        $('#totalTTC').val(totalTTC.toFixed(2));
 });
