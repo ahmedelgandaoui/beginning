@@ -7,6 +7,14 @@
 <script src="facture.js"></script>
 <title>Facture</title>
 <style>
+  form{ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+
+  } 
   label {
     display: block;
     margin-bottom: 10px;
@@ -55,10 +63,9 @@
     <input type="number" min="0" id="totalTTC" name="totalTTC">
   </div>
   <div>
-    <button type="button" onclick="effacer()">Effacer</button>
-    <button type="submit" id="cal">Calculer</button>
+    <button type="button" id="effacer">Effacer</button>
+    <button type="button" id="cal">Calculer</button>
   </div>
 </form>
-
 </body>
 </html>

@@ -1,33 +1,13 @@
-const produits = [
-    {name: "produit01", prix: 100.00, tva: 9 },
-    {name: "produit02", prix: 150.00, tva: 11 },
-    {name: "produit03", prix: 190.00, tva: 19 }
-]
-
 $(document).ready(function() {
-    // Add onchange event handler to dropdown with id "produit"
-    $('#produit').change(function() {
-        // Log the selected option
-        var selectedproduct = $(this).val();
-    
-        //then get the product object from produits array by name
-        var produit = produits.find(function(produit) {
-            return produit.name === selectedproduct;
-        });
+    const produits = [
+        {name: "produit01", prix: 100.00, tva: "9%"},
+        {name: "produit02", prix: 150.00, tva: "11%"},
+        {name: "produit03", prix: 190.00, tva: "19%"}
+    ];
 
-        //then assign the produit.prix to prix produi
-        $('#prixHT').val(produit.prix);
-
-        //then assign the produit.tva to tva produit
-        console.log("===> ",     $("input[name='tva']").filter("[value='" + produit.tva + "']"))
-        $("input[name='tva']").filter("[value='" + produit.tva + "%']").prop("checked", true);
-    });
-    $("form").on( "submit", function (event) {
-        event.preventDefault(); 
-        console .log("===> ",   $("input[name='tva']:checked").val());
-    } );
-
-    var prixHT = parseFloat($('#prixHT').val());
+    // Function to calculate and update values
+    function calculateInvoice() {
+        var prixHT = parseFloat($('#prixHT').val());
         var tvaPercentage = parseFloat($("input[name='tva']:checked").val());
         var quantite = parseInt($('#quantite').val());
 
@@ -43,4 +23,42 @@ $(document).ready(function() {
         // Update the montant and totalTTC fields
         $('#montant').val(montantHT.toFixed(2));
         $('#totalTTC').val(totalTTC.toFixed(2));
+    }
+
+    // Add onchange event handler to dropdown with id "produit"
+    $('#produit').change(function() {
+        var selectedProduct = $(this).val();
+    
+        // Find the product object from produits array by name
+        var produit = produits.find(function(produit) {
+            return produit.name === selectedProduct;
+        });
+
+        // Assign the produit.prix to prix produit
+        $('#prixHT').val(produit.prix);
+
+        // Select the radio button for TVA based on the product's TVA percentage
+        $("input[name='tva'][value='" + produit.tva + "']").prop("checked", true);
+    });
+
+    // Add click event handler to calculate button
+    $('#cal').click(function() {
+        calculateInvoice();
+    });
+
+    // Function to clear form fields
+    function effacer() {
+        // Clear all form fields
+        $('#produit')[0].selectedIndex = 0;
+        $('#prixHT').val('');
+        $('#quantite').val('');
+        $('#montant').val('');
+        $('#totalTTC').val('');
+        $("input[name='tva']").prop("checked", false);
+    }
+
+    // Assign effacer function to the "Effacer" button click event
+    $('#effacer').click(function() {
+        effacer();
+    });
 });
